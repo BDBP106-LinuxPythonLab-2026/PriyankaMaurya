@@ -1,0 +1,121 @@
+1 (i) apropos "search for files"
+OUTPUT:- find (1)             - search for files in a directory hierarchy
+Explanation:- apropos searches the manual pages.
+It found the find command, which is used to search for files and directories.
+
+(ii) apropos "list directory contents"
+OUTPUT:- dir (1)              - List directory contents. Ignore files and directories starting with a '.' by default
+gnudir (1)           - list directory contents
+gnuls (1)            - list directory contents
+gnuvdir (1)          - list directory contents
+ls (1)               - List directory contents. Ignore files and directories starting with a '.' by default
+ntfsls (8)           - list directory contents on an NTFS filesystem
+rust-dir (1)         - List directory contents. Ignore files and directories starting with a '.' by default
+rust-ls (1)          - List directory contents. Ignore files and directories starting with a '.' by default
+rust-vdir (1)        - List directory contents. Ignore files and directories starting with a '.' by default
+vdir (1)             - List directory contents. Ignore files and directories starting with a '.' by default
+EXPLANATION:- 
+This command searches for commands related to listing directory contents.
+It shows commands like ls, dir, and vdir, which display files and directories.
+
+(iii) apropos "file compress"
+OUTPUT:- bunzip2 (1)          - a block-sorting file compressor, v1.0.8
+bzip2 (1)            - a block-sorting file compressor, v1.0.8
+
+EXPLANATION:- It searches for commands used to compress files.
+bzip2 compresses files and bunzip2 decompresses them.
+
+(iv)  apropos "file.*copy$"
+      Output:- scp (1)              - OpenSSH secure file copy
+ EXPLANATION:-   It searches for commands whose description ends with copy.
+scp is used to securely copy files between computers.
+
+Additional Keywords: Command and Output
+      1) apropos "remove files"
+      Output:- git-rm (1)           - Remove files from the working tree and from the index
+gnurm (1)            - remove files or directories
+rm (1)               - remove files or directories
+EXPLANATION:- Shows commands used to remove files.
+rm deletes files and directories.
+
+       2) apropos "change directory"
+       Output:- File::pushd (3pm)    - change directory temporarily for a limited scope
+EXPLANATION:-     Searches for commands related to changing directories.
+It displays commands or utilities for temporarily changing directories.   
+       
+       3) apropos "print working directory"
+       Output:- print working directory: nothing appropriate.
+EXPLANATION:-  No manual page matched the exact phrase.
+The correct command is pwd (Print Working Directory).
+
+Q2
+2.1) touch newfile
+     ls -l newfile
+     Output:- 
+       -rw-rw-r-- 1 ibab ibab 0 Aug  6 16:29 newfile
+EXPLANATION:- 
+A new empty file is created.
+Owner: Read & Write (rw-)
+Group: Read & Write (rw-)
+Others: Read only (r--)
+Permission = 664
+
+2.2) umask
+Output:- 0002
+EXPANATION:- umask sets default permissions.
+Default file permission = 664
+Default directory permission = 775
+
+2.3) touch Newfile
+     ls -l Newfile
+Output:- -rw-rw-r-- 1 ibab ibab 0 Aug  6 16:39 Newfile
+EXPLANATION:- A new file is created.
+Permission is 664 because the umask is 0002.
+
+2.4) mkdir newdir
+     ls -ld newdir
+     Output:- drwxrwxr-x 2 ibab ibab 4096 Aug  6 16:46 newdir
+EXPLANATION:- A new directory is created.
+Owner: rwx
+Group: rwx
+Others: r-x
+Octal permission = 775
+
+2.5) cp -r Newfile newdir/
+     ls -l newdir/Newfile
+Output:- -rw-rw-r-- 1 ibab ibab 0 Aug  6 16:59 newdir/Newfile
+EXPLANATION:- The file is copied successfully.
+The copied file has the same permission (664).
+Copying does not change file permissions.
+
+2.6) chmod 764 newdir
+     ls -l
+Output:- total 136
+-rw-rw-r-- 1 ibab ibab  8789 Aug  6 16:31  'L7(2.1).png'
+-rw-rw-r-- 1 ibab ibab  6164 Aug  6 16:38  'L7(2.2).png'
+-rw-rw-r-- 1 ibab ibab 12747 Aug  6 16:40  'L7(2.3).png'
+-rw-rw-r-- 1 ibab ibab 13180 Aug  6 16:47  'L7(2.4).png'
+-rw-rw-r-- 1 ibab ibab 18970 Aug  6 17:00  'L7(2.5).png'
+-rw-rw-r-- 1 ibab ibab 53112 Aug  6 17:14  'L7(2.6).png'
+drwxrwxr-x 2 ibab ibab  4096 Aug  6 16:51  Newdir
+-rw-rw-r-- 1 ibab ibab     0 Aug  6 16:39  Newfile
+drwxrwxr-x 2 ibab ibab  4096 Aug  6 17:10  dir1
+-rw-rw-r-- 1 ibab ibab     0 Aug  6 17:06  file1
+drwxrw-r-- 2 ibab ibab  4096 Aug  6 16:51  newdir
+-rw-rw-r-- 1 ibab ibab     0 Aug  6 16:29  newfile
+EXPLANATION:- Directory permission changes to 764.
+Owner = rwx (7)
+Group = rw- (6)
+Others = r-- (4)
+The file inside the directory does not inherit the new directory permission. It keeps its original permission.
+
+2.7) mkdir newdir
+     mv file1 newdir
+     cd newdir
+     ls
+Output:-      Newfile  Newfile1  file1
+     ls -al file1
+Output:- -rw-rw-r-- 1 ibab ibab 0 Aug  6 17:06 file1
+EXPLANATION:- The file is moved to newdir.
+Moving a file does not change its permissions.
+Only the file location changes. 

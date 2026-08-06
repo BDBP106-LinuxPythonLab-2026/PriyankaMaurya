@@ -1,0 +1,86 @@
+Q2. 
+COMMAND:- cat .bashrc | grep 'PS1'
+OUTPUT:- PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+EXPLANATION:- PS1 is the shell prompt variable.
+\u displays the current username.
+\h displays the hostname (computer name).
+\w displays the current working directory.
+\$ displays $ for a normal user and # for the root user.
+Together, these symbols define how the terminal prompt is displayed.
+
+Q3.
+COMMAND:- cat .bashrc | grep "HIST"
+OUTPUT:- HISTCONTROL=ignoreboth
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+EXPLANATION:- HISTSIZE=1000 means the shell stores the last 1000 commands in memory.
+HISTFILESIZE=2000 means 2000 commands can be saved in the .bash_history file.
+HISTCONTROL=ignoreboth means duplicate commands entered consecutively are not stored in the history file.
+
+Q4.
+COMMAND:- whereis ls
+OUTPUT:- ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz
+EXPLANATION:- "which" shows only the executable location, whereas "whereis" shows the executable and related files (such as the manual page).
+
+Q9(3)
+COMMAND:- dirs -v -l
+OUTPUT:- 0  /etc
+ 1  /tmp
+ 2  /var/log
+ 3  /home/ibab/Documents
+ 4  /home/ibab/Downloads
+ 5  /etc
+ 6  /tmp
+ 7  /home/ibab
+ 8  /home/ibab/Downloads
+ 9  /var/log
+10  /home/ibab/Downloads
+OUTPUT:- The output displays the directory stack with index numbers.
+Index 0 is the current working directory.
+The remaining entries are directories stored in the stack in the order they were pushed.
+The most recently added directory appears at the top of the stack.
+
+Q9(4).
+COMMAND:- pushd +1
+OUTPUT:- 0  /etc
+0  /home/ibab/Documents
+ 1  /etc
+ 2  /tmp
+ 3  /var/log
+ 4  /home/ibab/Documents
+ 5  /home/ibab/Downloads
+ 6  /etc
+ 7  /tmp
+ 8  /home/ibab
+ 9  /home/ibab/Downloads
+10  /var/log
+11  /home/ibab/Downloads
+
+EXPLANATION:- The directory at index 1 moves to the top of the directory stack.
+It becomes the current working directory (index 0).
+The remaining directories shift their positions accordingly.
+No directory is removed; only the order changes.
+
+Q9(5).
+COMMAND:- cd -
+OUTPUT:- The shell changes back to the previous working directory.
+The previous directory path is displayed on the screen.
+The directory stack itself is not modified.
+
+Q9(8).
+COMMAND:-popd +2
+EXPLANATION:- The directory at index 2 is removed from the directory stack.
+The current directory (index 0) remains the same.
+The remaining directories shift to fill the empty position. 
+
+Q9(9).
+EXPLANATION:- The entry at index 0 always represents the current working directory.
+Whenever pushd is used, the new directory becomes index 0.
+When popd removes the top directory, the next directory becomes index 0.
+Therefore, index 0 always indicates the directory in which the shell is currently working.
+
+
+

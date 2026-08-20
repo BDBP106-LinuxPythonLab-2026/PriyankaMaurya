@@ -1,0 +1,4 @@
+Q1
+i) STDOUT goes to presentfiles and STDERR goes to filesnotpresent. 1 represents STDOUT and 2 represents STDERR
+
+ii) For 1>listoffiles, the successful output of . goes into listoffiles.
